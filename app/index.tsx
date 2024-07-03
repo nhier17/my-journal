@@ -3,6 +3,7 @@ import { Redirect, router } from "expo-router";
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Ionicons";
+import CustomButton from "../components/CustomButton";
 
 const HomeScreen = () => {
   return (
@@ -26,6 +27,12 @@ const HomeScreen = () => {
             Capture Your Thoughts, Track Your Progress, and Reflect on Your Journey
             with Our Easy-to-Use Journaling Platform.
           </Text>
+
+          <CustomButton
+            title="Continue with Email"
+            handlePress={() => router.push("/sign-in")}
+            containerStyles="w-full mt-7"
+          />
         </View>
       </ScrollView>
 
