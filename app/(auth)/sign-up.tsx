@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, ScrollView, Dimensions, Alert } from "react-native";
+import { View, Text, ScrollView, Dimensions, Alert, Image } from "react-native";
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
+import { images } from "../../constants";
 import axios from 'axios';
 
 // Define the state type
@@ -60,6 +61,11 @@ const SignUp: React.FC = () => {
             minHeight: Dimensions.get("window").height - 100,
           }}
         >
+              <Image
+            source={images.logo}
+            resizeMode="contain"
+            className="w-[115px] h-[34px]"
+          />
           <Text className="text-2xl font-semibold text-white mt-10 font-psemibold">
             Welcome to My Journal
           </Text>

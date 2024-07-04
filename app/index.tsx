@@ -4,6 +4,7 @@ import { View, Text, Image, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Ionicons";
 import CustomButton from "../components/CustomButton";
+import { images } from "../constants";
 
 const HomeScreen = () => {
   return (
@@ -15,6 +16,11 @@ const HomeScreen = () => {
         }}
       >
         <View className="w-full flex justify-center items-center h-full px-4">
+        <Image
+            source={images.logo}
+            className="w-[150px] h-[100px]"
+            resizeMode="contain"
+          />
           <View className="relative mt-5">
           <Text className="text-3xl text-white font-bold text-center">
               Discover Endless{"\n"}
