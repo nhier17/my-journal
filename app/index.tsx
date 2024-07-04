@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { Redirect, router } from "expo-router";
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Ionicons";
 import CustomButton from "../components/CustomButton";
@@ -35,31 +35,6 @@ const HomeScreen = () => {
           />
         </View>
       </ScrollView>
-
-      <TouchableOpacity
-        style={{
-          position: "absolute",
-          bottom: 30,
-          alignSelf: "center",
-          backgroundColor: "#f4511e",
-          width: 60,
-          height: 60,
-          borderRadius: 30,
-          justifyContent: "center",
-          alignItems: "center",
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.8,
-          shadowRadius: 2,
-          elevation: 5,
-        }}
-        onPress={() => {
-          // Add your navigation logic here
-          console.log("Add new journal entry");
-        }}
-      >
-        <Icon name="add" size={30} color="white" />
-      </TouchableOpacity>
 
       <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
