@@ -5,10 +5,8 @@ import { View, Text, ScrollView, Dimensions, Alert, Image } from "react-native";
 import {CustomButton, FormField} from "@/components";
 import { images } from "@/constants";
 import axios from 'axios';
-import * as SecureStore from 'expo-secure-store';
+import { signIn } from "@/data/api";
 
-
-const base_url = "https://my-journal-api-oysu.onrender.com"
 
 const SignIn = () => {
   const [form, setForm] = useState({
@@ -26,17 +24,11 @@ const SignIn = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post(`${base_url}/api/auth/login`, {
-        email: form.email,
-        password: form.password,
-      }, { withCredentials: true });
-    
-      if (response.status === 200) {
+      const data = await signIn(form)
+
         Alert.alert("Success", "Logged in successfully");
         router.replace("/journals")
-      } else {
-        Alert.alert("Error", "Invalid credentials");
-      }
+
     } catch (error) {
       console.error(error);
       Alert.alert("Error", "An error occurred during registration");

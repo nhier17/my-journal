@@ -8,15 +8,14 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { useRouter } from "expo-router"
+import { router } from "expo-router";
 import { Picker } from '@react-native-picker/picker';
 import axios from "axios";
 import { CustomButton, FormField } from "@/components";
+import { createJournalEntry } from "@/data/api";
 
-const base_url = "http://192.168.100.11:5000"
 
 const CreateJournalEntry: React.FC = () => {
-  const router = useRouter();
   const [form, setForm] = useState({
     title: '',
     content: '',
@@ -32,15 +31,10 @@ const handleCreateEntry = async () => {
   }
   setIsSubmitting(true)
   try {
-    const response = await axios.post(`${base_url}/api/journal`, form, { withCredentials: true });
-    console.log(response)
-    if(response.status === 200) {
-      Alert.alert('Success', 'Journal entry created successfully.')
-      router.push('/home')
+    const data = await createJournalEntry(form);
 
-    } else {
-      Alert.alert('Error', 'Failed to create journal entry.')
-    }
+      Alert.alert('Success', 'Journal entry created successfully.')
+      router.replace('/journals')
   } catch (error) {
     console.error(error)
   } finally {
