@@ -1,4 +1,5 @@
 import FormField from "./FormField";
 import CustomButton from "./CustomButton";
+import Loader from "./Loader";
 
-export { FormField, CustomButton };
+export { FormField, CustomButton, Loader };
