@@ -1,36 +1,109 @@
-import { Tabs } from 'expo-router';
+import { Tabs, Redicrect } from 'expo-router';
 import React from 'react';
+import { StatusBar } from "expo-status-bar";
+import { Image, Text, View } from "react-native";
+import icons  from "@/constants/icons";
+import { useGlobalContext } from "@/context/GlobalProvider";
 
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+const TabIcon = ({ icon, color, name, focused }) => {
 
   return (
+    <View className="flex items-center justify-center gap-2">
+      <Image
+        source={icon}
+        resizeMode="contain"
+        tintColor={color}
+        className="w-6 h-6"
+      />
+      <Text
+        className={`${focused ? "font-psemibold" : "font-pregular"} text-xs`}
+        style={{ color: color }}
+      >
+        {name}
+      </Text>
+    </View>
+  );
+};
+
+export default function TabLayout() {
+  const { loading, isLogged } = useGlobalContext();
+
+  if (!loading && !isLogged) return <Redirect href="/sign-in" />;
+  return (
+    <>
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
+    screenOptions={{
+      tabBarActiveTintColor: "#FFA001",
+      tabBarInactiveTintColor: "#CDCDE0",
+      tabBarShowLabel: false,
+      tabBarStyle: {
+        backgroundColor: "#161622",
+        borderTopWidth: 1,
+        borderTopColor: "#232533",
+        height: 84,
+      },
+    }}>
+      
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
+          headerShown: false,
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabIcon
+            icon={icons.home}
+            color={color}
+            name="Home"
+            focused={focused}
+            />
           ),
         }}
       />
-      <Tabs.Screen
-        name="journalEntry"
+        <Tabs.Screen
+        name="journals"
+        options={{
+          title: 'Journals',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon
+            icon={icons.bookmark}
+            color={color}
+            name="Journals"
+            focused={focused}
+            />
+          ),
+        }}
+      />
+          <Tabs.Screen
+        name="create"
         options={{
           title: 'Create Entry',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <TabIcon
+            icon={icons.plus}
+            color={color}
+            name="Create"
+            focused={focused}
+            />
           ),
         }}
       />
+              <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon
+            icon={icons.profile}
+            color={color}
+            name="Profile"
+            focused={focused}
+            />
+          ),
+        }}
+      />  
     </Tabs>
+      <StatusBar backgroundColor="#161622" style="light" />
+      </>
   );
 }

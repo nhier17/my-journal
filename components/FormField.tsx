@@ -8,6 +8,8 @@ const FormField = ({
   placeholder,
   handleChangeText,
   otherStyles,
+  multiline = false,
+  numberOfLines = 1,
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);

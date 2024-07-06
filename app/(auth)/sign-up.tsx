@@ -2,22 +2,16 @@ import React, { useState } from 'react';
 import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, ScrollView, Dimensions, Alert, Image } from "react-native";
-import FormField from "../../components/FormField";
-import CustomButton from "../../components/CustomButton";
-import { images } from "../../constants";
+import {CustomButton, FormField} from "@/components";
+import { images } from "@/constants";
 import axios from 'axios';
 
-// Define the state type
-interface FormState {
-  name: string;
-  email: string;
-  password: string;
-}
+
 
 const base_url = "https://my-journal-api-oysu.onrender.com"
 
-const SignUp: React.FC = () => {
-  const [form, setForm] = useState<FormState>({
+const SignUp = () => {
+  const [form, setForm] = useState({
     name: '',
     email: '',
     password: '',

@@ -2,21 +2,16 @@ import React, { useState } from 'react';
 import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, ScrollView, Dimensions, Alert, Image } from "react-native";
-import FormField from "../../components/FormField";
-import CustomButton from "../../components/CustomButton";
-import { images } from "../../constants";
+import {CustomButton, FormField} from "@/components";
+import { images } from "@/constants";
 import axios from 'axios';
+import * as SecureStore from 'expo-secure-store';
 
-// Define the state type
-interface FormState {
-  name: string;
-  email: string;
-  password: string;
-}
+
 const base_url = "https://my-journal-api-oysu.onrender.com"
 
-const SignIn: React.FC = () => {
-  const [form, setForm] = useState<FormState>({
+const SignIn = () => {
+  const [form, setForm] = useState({
     email: '',
     password: '',
   });
@@ -34,10 +29,11 @@ const SignIn: React.FC = () => {
       const response = await axios.post(`${base_url}/api/auth/login`, {
         email: form.email,
         password: form.password,
-      });
-
+      }, { withCredentials: true });
+    
       if (response.status === 200) {
-        Alert.alert("Success", "Registered successfully");
+        Alert.alert("Success", "Logged in successfully");
+        router.replace("/journals")
       } else {
         Alert.alert("Error", "Invalid credentials");
       }
