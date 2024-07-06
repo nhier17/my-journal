@@ -38,3 +38,14 @@ export const createJournalEntry = async (form) => {
         throw error.response.data;
     }
 };
+
+//view the journal entry
+
+export const journalEntries = async () => {
+    try {
+        const response = await axiosInstance.get(`/api/journal`);
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+};
