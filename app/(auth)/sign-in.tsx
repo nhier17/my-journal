@@ -7,6 +7,7 @@ import { images } from "@/constants";
 import axios from 'axios';
 import { signIn } from "@/data/api";
 import { useGlobalContext } from "@/context/GlobalProvider";
+import Toast from 'react-native-toast-message';
 
 
 const SignIn = () => {
@@ -19,7 +20,11 @@ const SignIn = () => {
 
   const handleLogin = async () => {
     if (form.email === "" || form.password === "") {
-      Alert.alert("Error", "Please fill in all fields");
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Please fill in all fields'
+      })
       return;
     }
 
@@ -28,7 +33,11 @@ const SignIn = () => {
    try {
     const data = await signIn(form)
     setUser(data.user);
-     Alert.alert("Success", "Logged in successfully");
+     Toast.show({
+       type:'success',
+       text1: 'Success',
+       text2: `Hello ${data.user.name} 👋`
+     })
       router.replace("/journals")
 
     } catch (error) {
@@ -88,6 +97,7 @@ const SignIn = () => {
           </View>
         </View>
       </ScrollView>
+      <Toast />
     </SafeAreaView>
   );
 }
