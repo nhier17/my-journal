@@ -1,5 +1,6 @@
 import axios from 'axios'
-
+import { JournalSummaryResponse } from '@/types';
+import { SummaryItem } from '@/types';
 
 export const base_url = "https://my-journal-api-oysu.onrender.com";
 
@@ -27,9 +28,16 @@ export const signUp = async (form) => {
         throw error.response.data;
     }
 };
+//logout user
+export const logout = async () => {
+try {
+   await axiosInstance.get(`/api/auth/logout`) 
+} catch (error) {
+    throw error.response.data;
+}
+};
 
 // create new journal entry
-
 export const createJournalEntry = async (form) => {
     try {
         const response = await axiosInstance.post('/api/journal', form);
@@ -40,7 +48,6 @@ export const createJournalEntry = async (form) => {
 };
 
 //view the journal entry
-
 export const journalEntries = async () => {
     try {
         const response = await axiosInstance.get(`/api/journal`);
@@ -49,3 +56,13 @@ export const journalEntries = async () => {
         throw error.response.data;
     }
 };
+//get  journal summary 
+export const journalSummary = async (period: string): Promise<SummaryItem[]> => {
+        try {
+            const response = await axiosInstance.get(`/api/journal/summary?period=${period}`);
+            
+            return response.data;
+        } catch (error) {
+            throw error.response.data;
+        }
+    };

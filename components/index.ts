@@ -4,6 +4,8 @@ import Loader from "./Loader";
 import EmptyState from "./EmptyState";
 import JournalCard from "./JournalCard";
 import SkeletonLoader from "./SkeletonLoader";
+import JournalSummary from "./JournalSummary";
+import InfoBox from "./InfoBox";
 
 export {
      FormField,
@@ -11,5 +13,8 @@ export {
      Loader,
      EmptyState,
      JournalCard,
-     SkeletonLoader
+     SkeletonLoader,
+     JournalSummary,
+     InfoBox,
+     // Add more components as needed...
      };

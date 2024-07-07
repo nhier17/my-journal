@@ -7,6 +7,7 @@ const GlobalProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [entries, setEntries] = useState([]);
 
   return (
     <GlobalContext.Provider
@@ -17,6 +18,8 @@ const GlobalProvider = ({ children }) => {
         setUser,
         loading,
         setLoading,
+        entries,
+        setEntries,
       }}
     >
       {children}

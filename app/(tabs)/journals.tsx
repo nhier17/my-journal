@@ -5,14 +5,13 @@ import { router } from "expo-router";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { journalEntries } from "@/data/api";
 import { images } from "@/constants";
-import { EmptyState, JournalCard, SkeletonLoader } from "@/components";
+import { EmptyState, JournalCard, SkeletonLoader, JournalSummary } from "@/components";
+
 
 const Journals = () => {
-  const [entries, setEntries] = useState([]);
-  const { loading, setLoading } = useGlobalContext();
+  const { loading, setLoading, entries, setEntries } = useGlobalContext();
   const [refreshing, setRefreshing] = useState(false);
   
-  console.log(entries);
 
   const fetchEntries = async () => {
     setLoading(true);
@@ -81,7 +80,7 @@ const Journals = () => {
             </View>
             <View className="w-full flex-1 pt-5 pb-8">
               <Text className="text-lg font-pregular text-gray-100 mb-3">
-                Journal Summary
+                JournalSummary
               </Text>
             </View>
           </View>

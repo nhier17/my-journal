@@ -6,9 +6,11 @@ import {CustomButton, FormField} from "@/components";
 import { images } from "@/constants";
 import axios from 'axios';
 import { signIn } from "@/data/api";
+import { useGlobalContext } from "@/context/GlobalProvider";
 
 
 const SignIn = () => {
+  const { setUser } = useGlobalContext();
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -23,11 +25,11 @@ const SignIn = () => {
 
     setIsSubmitting(true);
 
-    try {
-      const data = await signIn(form)
-
-        Alert.alert("Success", "Logged in successfully");
-        router.replace("/journals")
+   try {
+    const data = await signIn(form)
+    setUser(data.user);
+     Alert.alert("Success", "Logged in successfully");
+      router.replace("/journals")
 
     } catch (error) {
       console.error(error);

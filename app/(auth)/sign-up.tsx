@@ -6,10 +6,12 @@ import {CustomButton, FormField} from "@/components";
 import { images } from "@/constants";
 import axios from 'axios';
 import { signUp } from "@/data/api";
+import { useGlobalContext } from "@/context/GlobalProvider";
 
 
 
 const SignUp = () => {
+  const { setUser } = useGlobalContext();
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -27,7 +29,7 @@ const SignUp = () => {
 
     try {
         const data = await signUp(form);
-        
+        setUser(data.user);
         Alert.alert("Success", "Registered successfully");
         router.replace("/journals")
     } catch (error) {
