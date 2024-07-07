@@ -60,9 +60,9 @@ export const journalEntries = async () => {
 export const journalSummary = async (period: string): Promise<SummaryItem[]> => {
         try {
             const response = await axiosInstance.get(`/api/journal/summary?period=${period}`);
-            
+    
             return response.data;
         } catch (error) {
-            throw error.response.data;
+        console.error(error);
         }
     };

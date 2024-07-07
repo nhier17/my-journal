@@ -60,7 +60,7 @@ const Journals: React.FC = () => {
         keyExtractor={(item) => item._id}
         contentContainerStyle={{ padding: 16 }}
         ListHeaderComponent={() => (
-          <View className="flex my-6 px-4 space-x-6">
+          <View className="my-2">
             <View className="flex justify-between items-start flex-row mb-6">
               <View>
                 <Text className="font-pmedium text-sm text-gray-100">
@@ -79,9 +79,7 @@ const Journals: React.FC = () => {
               </View>
             </View>
             <View className="w-full flex-1 pt-5 pb-8">
-              <Text className="text-lg font-pregular text-gray-100 mb-3">
-                JournalSummary
-              </Text>
+                <JournalSummary />
             </View>
           </View>
         )}

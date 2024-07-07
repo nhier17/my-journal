@@ -9,7 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import { router } from "expo-router";
-import { Picker } from '@react-native-picker/picker';
+import RNPickerSelect from 'react-native-picker-select';
 import axios from "axios";
 import { CustomButton, FormField } from "@/components";
 import { createJournalEntry } from "@/data/api";
@@ -66,18 +66,24 @@ const handleCreateEntry = async () => {
      multiline={true}
      numberOfLines={4}
     />
-    <View className="mt-7">
-     <Text className="text-white text-lg">Category</Text>
-     <Picker
-       selectedValue={form.category}
-       onValueChange={(itemValue) => setForm({ ...form, category: itemValue })}
-       style={{ backgroundColor: 'white', color: 'black' }}
-     >
-       <Picker.Item label="Personal" value="Personal" />
-       <Picker.Item label="Work" value="Work" />
-       <Picker.Item label="Travel" value="Travel" />
-       <Picker.Item label="Other" value="Other" />
-     </Picker>
+    <Text className="text-white text-lg">Category</Text>
+    <View className="mt-2 bg-gray-700 p-2">
+     <RNPickerSelect
+          onValueChange={(value) => setForm({ ...form, category: value })}
+          items={[
+            { label: 'Personal', value: 'Personal' },
+            { label: 'Work', value: 'Work' },
+            { label: 'Travel', value: 'Travel' },
+            { label: 'Other', value: 'Other' },
+          ]}
+          style={{
+            inputIOS: { color: 'white' },
+            inputAndroid: { color: 'white'},
+            placeholder: { color: 'gray' }
+          }}
+          value={form.category}
+          placeholder={{ label: 'Select category', value: null, color: 'gray' }}
+        />
     </View>
      <CustomButton
       title="Create Entry"
