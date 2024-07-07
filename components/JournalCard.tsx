@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const JournalCard = ({ title, content, date, creator }) => {
+const JournalCard = ({ title, content, date, creator, onDelete }) => {
   return (
     <View className="flex flex-col items-center px-4 mb-14 p-4 bg-white rounded-lg shadow-md border border-gray-200">
       <View className="flex flex-row gap-3 items-start">
@@ -17,6 +18,9 @@ const JournalCard = ({ title, content, date, creator }) => {
             <Text className="text-xs text-gray-400 font-pregular" numberOfLines={1}>
               {creator}
             </Text>
+         <Pressable onPress={onDelete} style={{ position: 'absolute', bottom: 0, right: 20 }}>
+        <MaterialCommunityIcons name="delete" size={24} color="red" />
+      </Pressable>
           </View>
         </View>
       </View>

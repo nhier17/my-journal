@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { FlatList, Image, RefreshControl, Text, View, ActivityIndicator } from "react-native";
 import { router } from "expo-router";
 import { useGlobalContext } from "@/context/GlobalProvider";
-import { journalEntries } from "@/data/api";
+import { journalEntries, deleteEntry } from "@/data/api";
 import { images } from "@/constants";
 import { EmptyState, JournalCard, SkeletonLoader, JournalSummary } from "@/components";
 
@@ -35,12 +35,24 @@ const Journals: React.FC = () => {
     setRefreshing(false);
   };
 
+  //delete entry
+  const handleDeleteEntry = async (id) => {
+    try {
+      await deleteEntry(id);
+      const updatedEntries = entries.filter(entry => entry._id!== id);
+      setEntries(updatedEntries);
+    } catch (error) {
+      console.log('Failed to delete entry', error);
+    }
+  }
+
   const renderItem = ({ item }) => (
    <JournalCard
    title={item.title}
    content={item.content}
    date={item.date}
    creator={item.user.name}
+   onDelete={() => handleDeleteEntry(item._id)}
    />
   );
 

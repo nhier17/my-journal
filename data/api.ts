@@ -63,6 +63,15 @@ export const journalSummary = async (period: string): Promise<SummaryItem[]> => 
     
             return response.data;
         } catch (error) {
-        console.error(error);
+            throw error.response.data;
         }
     };
+ //delete journal entry
+ export const deleteEntry = async (id) => {
+    try {
+     await axiosInstance.get(`/api/journal/${id}`);  
+   
+    } catch (error) {
+        throw error.response.data;
+    }
+ }
