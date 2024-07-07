@@ -13,5 +13,11 @@ export interface SummaryItem {
     email: string;
     password: string;
   }
+  export interface EntryState {
+    title: string;
+    content: string;
+    category: string;
+    date: Date;
+  }
   
   export interface JournalSummaryResponse extends Array<SummaryItem> {}

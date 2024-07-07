@@ -8,8 +8,8 @@ import { images } from "@/constants";
 import { EmptyState, JournalCard, SkeletonLoader, JournalSummary } from "@/components";
 
 
-const Journals = () => {
-  const { loading, setLoading, entries, setEntries } = useGlobalContext();
+const Journals: React.FC = () => {
+  const { loading, setLoading, entries, setEntries,user } = useGlobalContext();
   const [refreshing, setRefreshing] = useState(false);
   
 
@@ -67,7 +67,7 @@ const Journals = () => {
                   Welcome Back
                 </Text>
                 <Text className="text-2xl font-psemibold text-white">
-                  My Journal
+                {user?.name}
                 </Text>
               </View>
               <View className="mt-1.5">

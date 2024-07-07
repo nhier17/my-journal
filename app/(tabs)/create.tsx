@@ -13,16 +13,17 @@ import { Picker } from '@react-native-picker/picker';
 import axios from "axios";
 import { CustomButton, FormField } from "@/components";
 import { createJournalEntry } from "@/data/api";
+import { EntryState } from "@/types";
 
 
 const CreateJournalEntry: React.FC = () => {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<EntryState>({
     title: '',
     content: '',
     category: 'Personal',
     date: new Date(),
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 //create a new journal entry
 const handleCreateEntry = async () => {
   if(form.title === "" || form.content === "") {

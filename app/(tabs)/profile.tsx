@@ -6,9 +6,8 @@ import { useGlobalContext } from "@/context/GlobalProvider";
 import { EmptyState, InfoBox, JournalCard } from "@/components";
 import { icons } from "@/constants";
 
-const Profile = () => {
+const Profile:React.FC = () => {
   const { user, setUser, setIsLogged,entries } = useGlobalContext();
-  console.log(user)
 
   const signOut = async () => {
     await logout();
