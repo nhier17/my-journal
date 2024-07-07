@@ -8,15 +8,16 @@ import axios from 'axios';
 import { signIn } from "@/data/api";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import Toast from 'react-native-toast-message';
+import { FormState } from "@/types"
 
 
-const SignIn = () => {
+const SignIn: React.FC = () => {
   const { setUser } = useGlobalContext();
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     email: '',
     password: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const handleLogin = async () => {
     if (form.email === "" || form.password === "") {
