@@ -8,7 +8,8 @@ import { images } from "@/constants";
 import { useGlobalContext } from "@/context/GlobalProvider";
 
 const HomeScreen = () => {
-  const { loading } = useGlobalContext();
+  const { loading, isLogged } = useGlobalContext();
+  if(!loading && isLogged ) return <Redirect href="/journals" />
 
   return (
     <SafeAreaView className="bg-primary h-full">

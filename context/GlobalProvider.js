@@ -15,8 +15,14 @@ const GlobalProvider = ({ children }) => {
   const checkLoggedIn = async () => {
     try {
       const isLoggedIn = await currentUser();
-    
-      setIsLogged(isLoggedIn.user);
+      if(isLoggedIn) {
+        setIsLogged(true)
+        setUser(isLoggedIn.user);
+      } else {
+        setIsLogged(false);
+        setUser(null);
+      }
+
     } catch (error) {
       console.error('Error checking login status:', error);
     }

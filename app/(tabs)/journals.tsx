@@ -9,7 +9,7 @@ import { EmptyState, JournalCard, SkeletonLoader, JournalSummary } from "@/compo
 
 
 const Journals: React.FC = () => {
-  const { loading, setLoading, entries, setEntries,user } = useGlobalContext();
+  const { loading, setLoading, entries, setEntries, user, isLogged } = useGlobalContext();
   const [refreshing, setRefreshing] = useState(false);
   
 
@@ -26,8 +26,10 @@ const Journals: React.FC = () => {
   };
 
   useEffect(() => {
+    if(isLogged) {
     fetchEntries();
-  }, []);
+    }
+  }, [isLogged]);
 
   const onRefresh = async () => {
     setRefreshing(true);

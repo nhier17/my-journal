@@ -6,7 +6,7 @@ import { Loader } from "@/components"
 const AuthLayout = () => {
   const { loading, isLogged } = useGlobalContext();
 
-  if (!loading && isLogged) return <Redirect href="/home" />;
+  if (!loading && isLogged) return <Redirect href="/journals" />;
   return (
     <>
       <Stack>
