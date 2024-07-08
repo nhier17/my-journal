@@ -4,7 +4,7 @@ import { View, Image, FlatList, TouchableOpacity } from "react-native";
 import { logout } from "@/data/api";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { EmptyState, InfoBox, JournalCard } from "@/components";
-import { icons } from "@/constants";
+import { icons, images } from "@/constants";
 
 const Profile:React.FC = () => {
   const { user, setUser, setIsLogged,entries } = useGlobalContext();
@@ -47,7 +47,7 @@ const Profile:React.FC = () => {
 
           <View className="w-16 h-16 border border-secondary rounded-lg flex justify-center items-center">
             <Image
-              source={icons.logout}
+              source={images.logo}
               className="w-[90%] h-[90%] rounded-lg"
               resizeMode="cover"
             />

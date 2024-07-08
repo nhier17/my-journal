@@ -46,6 +46,19 @@ try {
     }
 };
 
+// update user profile picture
+export const updateUserProfile = async (formData: FormData) => {
+    try {
+        const response = await axios.post(`${base_url}/api/auth/profile`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+};
 // create new journal entry
 export const createJournalEntry = async (form) => {
     try {
