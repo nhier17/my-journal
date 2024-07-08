@@ -12,7 +12,7 @@ import { FormState } from "@/types"
 
 
 const SignIn: React.FC = () => {
-  const { setUser } = useGlobalContext();
+  const { setUser, setIsLogged } = useGlobalContext();
   const [form, setForm] = useState<FormState>({
     email: '',
     password: '',
@@ -28,12 +28,12 @@ const SignIn: React.FC = () => {
       })
       return;
     }
-
     setIsSubmitting(true);
 
    try {
     const data = await signIn(form)
     setUser(data.user);
+     setIsLogged(true);
      Toast.show({
        type:'success',
        text1: 'Success',

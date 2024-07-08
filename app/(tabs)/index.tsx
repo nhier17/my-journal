@@ -3,13 +3,16 @@ import { Redirect, router } from "expo-router";
 import { View, Text, Image, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Ionicons";
-import { CustomButton } from "@/components";
+import { CustomButton, Loader } from "@/components";
 import { images } from "@/constants";
+import { useGlobalContext } from "@/context/GlobalProvider";
 
 const HomeScreen = () => {
+  const { loading } = useGlobalContext();
+
   return (
     <SafeAreaView className="bg-primary h-full">
-
+      <Loader isLoading={loading} />
       <ScrollView
         contentContainerStyle={{
           height: "100%",

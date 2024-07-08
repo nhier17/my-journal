@@ -36,6 +36,15 @@ try {
     throw error.response.data;
 }
 };
+//show current user
+ export const currentUser = async () => {
+    try {
+        const response = await axiosInstance.get('/api/user/current');
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+};
 
 // create new journal entry
 export const createJournalEntry = async (form) => {

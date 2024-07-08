@@ -13,7 +13,7 @@ import { FormState } from "@/types"
 
 
 const SignUp = () => {
-  const { setUser } = useGlobalContext();
+  const { setUser, setIsLogged } = useGlobalContext();
   const [form, setForm] = useState<FormState>({
     name: '',
     email: '',
@@ -35,6 +35,7 @@ const SignUp = () => {
     try {
         const data = await signUp(form);
         setUser(data.user);
+        setIsLogged(true);
       Toast.show({
         text1: "Registration successful",
         type: "success",
