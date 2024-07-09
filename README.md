@@ -4,7 +4,7 @@ My-Journal is a personal journaling application designed to help users keep trac
 
 <div align="center">
   <br />
-      <img src="https://i.postimg.cc/5NR9bxFM/Sora-README.png" alt="Project Banner">
+      <img src="https://github.com/nhier17/my-journal/blob/main/assets/images/journal.jpg" alt="Project Banner">
     
   <br />
 
