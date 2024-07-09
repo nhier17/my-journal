@@ -5,10 +5,10 @@ import { useGlobalContext } from "@/context/GlobalProvider";
 
 const Settings: React.FC = () => {
     const { user, setUser } = useGlobalContext();
-    const [name, setName] = useState(user?.name || '');
-    const [email, setEmail] = useState(user?.email || '');
-    const [oldPassword, setOldPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
+    const [name, setName] = useState<string>(user?.name || '');
+    const [email, setEmail] = useState<string>(user?.email || '');
+    const [oldPassword, setOldPassword] = useState<string>('');
+    const [newPassword, setNewPassword] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleUpdateProfile = async () => {

@@ -1,6 +1,7 @@
 import { ActivityIndicator, Text, Pressable } from "react-native";
+import { CustomButtonProps } from "@/types";
 
-const CustomButton = ({
+const CustomButton: React.FC<CustomButtonProps>  = ({
     title,
     handlePress,
     containerStyles,
