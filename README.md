@@ -2,7 +2,6 @@
 
 My-Journal is a personal journaling application designed to help users keep track of their daily thoughts, experiences, and reflections. The app provides a simple and intuitive user interface for creating, managing, and viewing journal entries. It supports features such as user authentication, categorization of entries, and viewing summaries of journal entries over different periods (daily, weekly, monthly).
 
-
 <div align="center">
   <br />
     <a href="https://youtu.be/ZBCUegTZF7M?si=ubt0vk70lSjt6DCs" target="_blank">
@@ -18,6 +17,7 @@ My-Journal is a personal journaling application designed to help users keep trac
 
   <h3 align="center">Journal Entry App</h3>
 
+</div>
 
 ## 📋 <a name="table">Table of Contents</a>
 
@@ -30,14 +30,13 @@ My-Journal is a personal journaling application designed to help users keep trac
 7. 🚀 [More](#more)
 
 
-<a href="https://discord.com/invite/n6EdbFJ" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/618f4872-1e10-42da-8213-1d69e486d02e" /></a>
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
 - React Native
 - Expo
 - Nativewind
-
+  
 
 ## <a name="features">🔋 Features</a>
 
@@ -45,16 +44,17 @@ My-Journal is a personal journaling application designed to help users keep trac
 
 👉 **Robust Authentication & Authorization System**: Secure email login safeguards user accounts.
 
-👉 **Dynamic Home Screen with Animated Flat List**: Smoothly animated flat list showcases the created entries for seamless browsing.
+👉 **Dynamic Home Screen with Animated Flat List**: Smoothly animated flat list showcases the latest videos for seamless browsing.
 
 👉 **Pull-to-Refresh Functionality**: Users can refresh content with a simple pull gesture for up-to-date information.
 
+👉 **Full-Text Search Capability**: Efficiently search through videos with real-time suggestions and instant results.
 
-👉 **Tab Navigation**: Navigate between sections like Home, Journals, and Profile with ease using tab navigation.
+👉 **Tab Navigation**: Navigate between sections like Home, Search, and Profile with ease using tab navigation.
 
 👉 **Post Creation Screen for Uploading Media**: Upload video and image posts directly from the app with integrated media selection.
 
-👉 **Profile Screen with Detailed Insights**: View account details and activity, including created posts and follower count, for a personalized experience.
+👉 **Profile Screen with Detailed Insights**: View account details and activity, including uploaded videos and follower count, for a personalized experience.
 
 👉 **Responsiveness**: Smooth performance and adaptability across various devices and screen sizes for a consistent user experience.
 
@@ -77,8 +77,8 @@ Make sure you have the following installed on your machine:
 **Cloning the Repository**
 
 ```bash
-git clone https://github.com/nhier!7/my-journal.git
-cd my-journal
+git clone https://github.com/adrianhajdin/aora.git
+cd aora
 ```
 **Installation**
 
@@ -147,7 +147,7 @@ module.exports = {
 <details>
 <summary><code>Font Loaded</code></summary>
 
-```typescript
+```javascript
 const [fontsLoaded, error] = useFonts({
   "Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
   "Poppins-Bold": require("../assets/fonts/Poppins-Bold.ttf"),
@@ -252,3 +252,31 @@ const videos = [
 ];
 ```
 
+</details>
+
+## <a name="links">🔗 Links</a>
+
+Assets and constants used in the project can be found [here](https://drive.google.com/drive/folders/1pckq7VAoqZlmsEfYaSsDltmQSESKm8h7?usp=sharing)
+
+## <a name="more">🚀 More</a>
+
+**Advance your skills with Next.js 14 Pro Course**
+
+Enjoyed creating this project? Dive deeper into our PRO courses for a richer learning adventure. They're packed with detailed explanations, cool features, and exercises to boost your skills. Give it a go!
+
+<a href="https://jsmastery.pro/next14" target="_blank">
+<img src="https://github.com/sujatagunale/EasyRead/assets/151519281/557837ce-f612-4530-ab24-189e75133c71" alt="Project Banner">
+</a>
+
+<br />
+<br />
+
+**Accelerate your professional journey with the Expert Training program**
+
+And if you're hungry for more than just a course and want to understand how we learn and tackle tech challenges, hop into our personalized masterclass. We cover best practices, different web skills, and offer mentorship to boost your confidence. Let's learn and grow together!
+
+<a href="https://www.jsmastery.pro/masterclass" target="_blank">
+<img src="https://github.com/sujatagunale/EasyRead/assets/151519281/fed352ad-f27b-400d-9b8f-c7fe628acb84" alt="Project Banner">
+</a>
+
+#
