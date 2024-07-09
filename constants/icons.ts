@@ -5,6 +5,7 @@ import profile from "@/assets/icons/profile.png";
 import eyeHide from "@/assets/icons/eye-hide.png";
 import eye from "@/assets/icons/eye.png";
 import logout from "@/assets/icons/logout.png";
+import setting from "@/assets/icons/setting.png";
 
 export default {
     bookmark,
@@ -13,5 +14,6 @@ export default {
     profile,
     eyeHide,
     eye,
-    logout
+    logout,
+    setting
 };

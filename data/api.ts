@@ -47,18 +47,25 @@ try {
 };
 
 // update user profile picture
-export const updateUserProfile = async (formData: FormData) => {
+export const updateUserProfile = async (userId: string, data: { name: string; email: string }) => {
     try {
-        const response = await axios.post(`${base_url}/api/auth/profile`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
+        const response = await axios.post(`${base_url}/api/user/update-user/${userId}`, data);
         return response.data;
     } catch (error) {
         throw error.response.data;
     }
+    
 };
+//update user password
+export const updatePassword = async(oldPassword, newPassword) => {
+    try {
+        const response = await axiosInstance.patch('/api/user/update-password', {oldPassword, newPassword});
+        
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+}
 // create new journal entry
 export const createJournalEntry = async (form) => {
     try {
@@ -91,7 +98,7 @@ export const journalSummary = async (period: string): Promise<SummaryItem[]> => 
  //delete journal entry
  export const deleteEntry = async (id) => {
     try {
-     await axiosInstance.get(`/api/journal/${id}`);  
+     await axiosInstance.delete(`/api/journal/${id}`);  
    
     } catch (error) {
         throw error.response.data;
