@@ -92,14 +92,23 @@ Download the [Expo Go](https://expo.dev/go) app onto your device, then use it to
 The app interacts with backend services to manage journal entries and user authentication. Below are the key API endpoints:
 
 ### User Authentication
+
 Login: /api/auth/login
+
 Register: /api/auth/register
+
 Current User: /api/user/current
-Journal Entries
+
+### Journal Entries
+
 Get All Entries: /api/journal
+
 Create Entry: /api/journal
+
 Update Entry: /api/journal/:id
+
 Delete Entry: /api/journal/:id
+
 Get Summary: /api/journal/summary
 
 ### Contexts
