@@ -10,27 +10,29 @@ const GlobalProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [entries, setEntries] = useState([]);
 
-
-  useEffect(() =>{
-  const checkLoggedIn = async () => {
-    try {
-      const isLoggedIn = await currentUser();
-      if(isLoggedIn) {
-        setIsLogged(true)
-        setUser(isLoggedIn.user);
-      } else {
+  useEffect(() => {
+    const checkLoggedIn = async () => {
+      setLoading(true);
+      try {
+        const response = await currentUser();
+      if (response && response.user) {
+          setIsLogged(true);
+          setUser(response.user);
+        } else {
+          setIsLogged(false);
+          setUser(null);
+        }
+      } catch (error) {
+        console.error('Error checking login status:', error.message || error);
         setIsLogged(false);
         setUser(null);
+      } finally {
+        setLoading(false);
       }
+    };
 
-    } catch (error) {
-      console.error('Error checking login status:', error);
-    }
-  }
-
-  checkLoggedIn();
-  
-}, []);
+    checkLoggedIn();
+  }, []);
 
   return (
     <GlobalContext.Provider

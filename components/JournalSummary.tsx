@@ -8,24 +8,27 @@ import useDebounce from '@/hooks/useDebounce';
 
 const JournalSummary: React.FC = () => {
   const [summary, setSummary] = useState<SummaryItem[]>([]);
-  const { loading } = useGlobalContext();
+  const { loading, isLogged } = useGlobalContext();
   const [period, setPeriod] = useState<string>('daily');
 
   const debouncedPeriod = useDebounce(period, 500);
 
+  const fetchSummary = async (currentPeriod: string) => {
+    try {
+      const data = await journalSummary(currentPeriod);
+    
+      setSummary(data); 
+    } catch (error) {
+      console.error('Error fetching journal summary:', error);
+      Alert.alert('Error fetching journal summary', error.message);
+    } 
+  };
+
   useEffect(() => {
-    const fetchSummary = async (currentPeriod: string) => {
-      try {
-        const data = await journalSummary(currentPeriod);
-      
-        setSummary(data); 
-      } catch (error) {
-        console.error('Error fetching journal summary:', error);
-        Alert.alert('Error fetching journal summary', error.message);
-      } 
-    };
+    if(isLogged) {
     fetchSummary(debouncedPeriod);
-  }, [debouncedPeriod]);
+    }
+  }, [debouncedPeriod, isLogged]);
 
 
   return (

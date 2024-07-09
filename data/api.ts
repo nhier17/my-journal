@@ -30,7 +30,7 @@ export const signIn = async (form: { email: string; password: string }): Promise
 // sign up
 export const signUp = async (form: { name: string; email: string; password: string }): Promise<AuthResponse> => {
     try {
-        const response = await axiosInstance.post<AuthResponse>(`${base_url}/api/auth/register`, form);
+        const response = await axios.post<AuthResponse>(`${base_url}/api/auth/register`, form);
         return response.data;
     } catch (error) {
         throw error.response.data;
@@ -45,9 +45,9 @@ export const logout = async (): Promise<void> => {
     }
 };
 //show current user
-export const currentUser = async (): Promise<User> => {
+export const currentUser = async () => {
     try {
-        const response = await axiosInstance.get<User>('/api/user/current');
+        const response = await axiosInstance.get('/api/user/current');
         return response.data;
     } catch (error) {
         throw error.response.data;
@@ -55,7 +55,7 @@ export const currentUser = async (): Promise<User> => {
 };
 
 // update user profile 
-export const updateUserProfile = async (data: { name: string; email: string }): Promise<UpdateProfileResponse> => {
+export const updateProfile = async (data: { name: string; email: string }): Promise<UpdateProfileResponse> => {
     try {
         const response = await axiosInstance.post<UpdateProfileResponse>('/api/user/update-user', data);
         return response.data;

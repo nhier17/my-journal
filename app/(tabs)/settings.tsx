@@ -2,6 +2,7 @@ import { Text, SafeAreaView, ScrollView } from 'react-native';
 import { CustomButton, FormField } from "@/components"
 import React, { useState } from 'react';
 import { useGlobalContext } from "@/context/GlobalProvider";
+import { updateProfile, updatePassword } from "@/data/api"
 
 const Settings: React.FC = () => {
     const { user, setUser } = useGlobalContext();
@@ -9,33 +10,37 @@ const Settings: React.FC = () => {
     const [email, setEmail] = useState<string>(user?.email || '');
     const [oldPassword, setOldPassword] = useState<string>('');
     const [newPassword, setNewPassword] = useState<string>('');
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isProfileSubmitting, setIsProfileSubmitting] = useState<boolean>(false);
+    const [isPasswordSubmitting, setIsPasswordSubmitting] = useState<boolean>(false)
+
 
     const handleUpdateProfile = async () => {
-        setIsSubmitting(true);
+        setIsProfileSubmitting(true);
         try {
             if(user) {
-           const data = await updateProfile(user._id, { name, email});
+           const data = await updateProfile( name, email);
            setUser(data) 
            Alert.alert('Password updated successfully!');
             }
         } catch (error) {
             console.error('Error updating user profile', error);
         } finally {
-            setIsSubmitting(false);
+            setIsProfileSubmitting(false);
         }
     }
 
     //update password
     const handleUpdatePassword = async () => {
-        setIsSubmitting(true);
+        setIsPasswordSubmitting(true);
         try {
-          await updatePassword({ oldPassword, newPassword });
+          const data = await updatePassword(oldPassword, newPassword );
+          if(data) {
           Alert.alert('Password updated successfully!'); 
+          }
         } catch (error) {
-            console.error('Error updating password', error);
-        } finally {
-            setIsSubmitting(false);
+            console.error('Error updating password', error.response?.data || error);
+         } finally {
+            setIsPasswordSubmitting(false);
         }
     };
 
@@ -46,35 +51,37 @@ const Settings: React.FC = () => {
     <FormField
     title="Name"
     value={name}
-    handleChangeText={(text) => setName(text)}
+    handleChangeText={setName}
     otherSyles="mt-7"
     />
     <FormField
     title="Email"
     value={email}
-    handleChangeText={(text) => setEmail(text)}
+    handleChangeText={setEmail}
+    otherStyles="mt-7"
+    keyboardType="email-address"
     />
     <CustomButton
        title="Update Profle"
-       isLoading={isSubmitting}
+       isLoading={isProfileSubmitting}
        handlePress={handleUpdateProfile}
        containerStyles="w-full mt-7"
     />
 <FormField
     title="Old Password"
     value={oldPassword}
-    handleChangeText={(text) => setOldPassword(text)}
+handleChangeText={setOldPassword}
     otherStyles="mt-7"
 />
 <FormField
     title="New Password"
     value={newPassword}
-    handleChangeText={(text) => setNewPassword(text)}
+handleChangeText={setNewPassword}
     otherStyles="mt-7"
 />
     <CustomButton
        title="Update Password"
-       isLoading={isSubmitting}
+       isLoading={isPasswordSubmitting}
        handlePress={handleUpdatePassword}
        containerStyles="w-full mt-7"
        />

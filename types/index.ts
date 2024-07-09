@@ -8,11 +8,6 @@ export interface SummaryItem {
     password: string;
   }
   
-  export interface User {
-    name: string;
-    email: string;
-    password: string;
-  }
   export interface EntryState {
     title: string;
     content: string;
