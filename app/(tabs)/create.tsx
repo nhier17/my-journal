@@ -17,12 +17,14 @@ import { EntryState } from "@/types";
 
 
 const CreateJournalEntry: React.FC = () => {
-  const [form, setForm] = useState<EntryState>({
+  const initialFormState: EntryState = {
     title: '',
     content: '',
     category: 'Personal',
     date: new Date(),
-  });
+  };
+
+  const [form, setForm] = useState<EntryState>(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 //create a new journal entry
 const handleCreateEntry = async () => {
@@ -33,9 +35,11 @@ const handleCreateEntry = async () => {
   setIsSubmitting(true)
   try {
     const data = await createJournalEntry(form);
-
-      Alert.alert('Success', 'Journal entry created successfully.')
-      router.replace('/journals')
+      if(data) {
+      Alert.alert('Success', 'Journal entry created successfully.');
+      setForm(initialFormState);
+      router.replace('/journals');
+      }
   } catch (error) {
     console.error(error)
   } finally {

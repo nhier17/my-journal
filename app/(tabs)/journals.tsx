@@ -14,6 +14,7 @@ const Journals: React.FC = () => {
   
 
   const fetchEntries = async () => {
+    if(!isLogged) return;
     setLoading(true);
     try {
       const data = await journalEntries();

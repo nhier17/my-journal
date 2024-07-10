@@ -8,20 +8,24 @@ import useDebounce from '@/hooks/useDebounce';
 
 const JournalSummary: React.FC = () => {
   const [summary, setSummary] = useState<SummaryItem[]>([]);
-  const { loading, isLogged } = useGlobalContext();
+  const { isLogged } = useGlobalContext();
   const [period, setPeriod] = useState<string>('daily');
+  const [isFetching, setSFetching] = useState(false);
 
   const debouncedPeriod = useDebounce(period, 500);
 
   const fetchSummary = async (currentPeriod: string) => {
+    if(!isLogged) return;
+    setSFetching(true);
     try {
       const data = await journalSummary(currentPeriod);
     
       setSummary(data); 
     } catch (error) {
       console.error('Error fetching journal summary:', error);
-      Alert.alert('Error fetching journal summary', error.message);
-    } 
+    } finally {
+      setSFetching(false);
+    }
   };
 
   useEffect(() => {
@@ -33,7 +37,7 @@ const JournalSummary: React.FC = () => {
 
   return (
     <View className="p-4 px-4">
-      <Text className="text-xl font-bold mb-1 text-white">Journal Summary</Text>
+      <Text className="text-lg font-pregular text-gray-100 mb-3">Journal Summary</Text>
       <View className="bg-gray-700 rounded mb-2 p-2">
       <RNPickerSelect
           onValueChange={(value) => setPeriod(value)}
@@ -51,7 +55,7 @@ const JournalSummary: React.FC = () => {
           placeholder={{ label: 'Select period', value: null, color: 'gray' }}
         />
         </View>
-      {loading ? (
+      {isFetching ? (
         <ActivityIndicator size="large" color="#FFA001" />
       ) : (
         summary.length > 0 ? (

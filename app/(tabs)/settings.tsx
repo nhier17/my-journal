@@ -36,12 +36,14 @@ const Settings: React.FC = () => {
           const data = await updatePassword(oldPassword, newPassword );
           if(data) {
           Alert.alert('Password updated successfully!'); 
+          setOldPassword('');
+          setNewPassword('');
           }
         } catch (error) {
             console.error('Error updating password', error.response?.data || error);
          } finally {
             setIsPasswordSubmitting(false);
-        }
+         }
     };
 
 

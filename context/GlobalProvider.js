@@ -10,11 +10,12 @@ const GlobalProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [entries, setEntries] = useState([]);
 
-  useEffect(() => {
+
     const checkLoggedIn = async () => {
       setLoading(true);
       try {
         const response = await currentUser();
+  
       if (response && response.user) {
           setIsLogged(true);
           setUser(response.user);
@@ -31,6 +32,7 @@ const GlobalProvider = ({ children }) => {
       }
     };
 
+    useEffect(() => {
     checkLoggedIn();
   }, []);
 
