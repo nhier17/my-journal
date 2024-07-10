@@ -7,14 +7,7 @@ import { EmptyState, InfoBox, JournalCard } from "@/components";
 import { icons, images } from "@/constants";
 
 const Profile:React.FC = () => {
-  const { user, setUser, setIsLogged,entries } = useGlobalContext();
-
-  const signOut = async () => {
-    await logout();
-    setUser(null);
-    setIsLogged(false);
-    router.replace("/sign-in");
-  }
+  const { user, setUser, setIsLogged,entries,logoutUser } = useGlobalContext();
 
   const renderItem = ({ item }) => (
     <JournalCard
@@ -35,7 +28,7 @@ const Profile:React.FC = () => {
         ListHeaderComponent={() => (
           <View className="w-full flex justify-center items-center mt-6 mb-12 px-4">
           <TouchableOpacity
-            onPress={signOut}
+            onPress={logoutUser}
             className="flex w-full items-end mb-10"
           >
             <Image

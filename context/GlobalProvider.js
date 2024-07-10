@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { currentUser } from "@/data/api";
+import { currentUser, logout } from "@/data/api";
+import { router} from "expo-router";
 
 const GlobalContext = createContext();
 export const useGlobalContext = () => useContext(GlobalContext);
@@ -33,8 +34,23 @@ const GlobalProvider = ({ children }) => {
     };
 
     useEffect(() => {
+      if(isLogged) {
     checkLoggedIn();
-  }, []);
+      }
+  }, [isLogged]);
+
+  //logout user
+  const logoutUser = async () => {
+    try {
+      await logout(); 
+      setIsLogged(false);
+      setUser(null);
+      setEntries([]);
+      router.replace('/sign-in');
+    } catch (error) {
+      console.error('Error logging out:', error.message || error);
+    }
+  };
 
   return (
     <GlobalContext.Provider
@@ -47,6 +63,7 @@ const GlobalProvider = ({ children }) => {
         setLoading,
         entries,
         setEntries,
+        logoutUser,
       }}
     >
       {children}
